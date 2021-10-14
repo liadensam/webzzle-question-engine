@@ -67,12 +67,13 @@ body {
   font-size: 6rem;
   margin-top: 6rem;
   line-height: 6.5rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .start_btn button {
   font-size: 2rem;
   font-weight: 500;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   padding: 1.5rem 4rem;
   outline: none;
   border: none;
@@ -187,7 +188,7 @@ ul li::before {
 }
 
 .quiz_box header .timer {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   border: none;
   height: 45px;
   width: 160px;
@@ -208,7 +209,7 @@ ul li::before {
 .quiz_box header .timer .timer_sec {
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   /* line-height: 30px; */
   text-align: center;
   user-select: none;
@@ -239,7 +240,7 @@ section .option_list {
 }
 
 section .option_list .option {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   background: #672ab7;
   border: 0.2rem solid #672ab7;
   border-radius: 100px;
@@ -266,13 +267,13 @@ section .option_list .option:hover {
 
 section .option_list .option.correct {
   color: #4bc0c8;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   border: 0.2rem solid #4bc0c8;
 }
 
 section .option_list .option.incorrect {
   color: #fb0ae8;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   border: 0.2rem solid #fb0ae8;
 }
 
@@ -333,18 +334,25 @@ footer button {
   cursor: pointer;
   border: none;
   outline: none;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 100px;
   background: #fb0ae8;
   line-height: 10px;
   opacity: 0;
   pointer-events: none;
   transform: scale(0.95);
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
+  border: 2px solid #fb0ae8;
 }
 
 footer button:hover {
   background: #fb0ae8;
+}
+
+.next_btn:hover {
+  color: #fb0ae8;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #fb0ae8;
 }
 
 footer button.show {
@@ -412,7 +420,7 @@ footer button.show {
 }
 
 .buttons button.restart {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   background: #fb0ae8;
 }
 
@@ -422,12 +430,11 @@ footer button.show {
 
 .buttons button.quit {
   color: #fb0ae8;
-  background: #fff;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
 }
 
 .buttons button.quit:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   background: #fb0ae8;
 }

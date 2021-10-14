@@ -10,6 +10,7 @@ const option_list = document.querySelector(".option_list");
 const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
+const question_sound = document.getElementById("question_sound");
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
@@ -25,6 +26,7 @@ exit_btn.onclick = ()=>{
     quiz_name.style.display = "";
 }
 
+
 // if continueQuiz button clicked
 continue_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide info box
@@ -33,6 +35,8 @@ continue_btn.onclick = ()=>{
     queCounter(1); //passing 1 parameter to queCounter
     startTimer(15); //calling startTimer function
     startTimerLine(0); //calling startTimerLine function
+    question_sound.play();
+    question_sound.volume = 0.5;
 }
 
 let timeValue =  15;
@@ -50,7 +54,7 @@ const quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick = ()=>{
     quiz_box.classList.add("activeQuiz"); //show quiz box
     result_box.classList.remove("activeResult"); //hide result box
-    timeValue = 15; 
+    timeValue = 15;
     que_count = 0;
     que_numb = 1;
     userScore = 0;
@@ -73,6 +77,8 @@ quit_quiz.onclick = ()=>{
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
 
+// next_btn.addEventListener("click", function(){ question_sound.play(); })
+
 // if Next Que button clicked
 next_btn.onclick = ()=>{
     if(que_count < questions.length - 1){ //if question count is less than total question length
@@ -86,12 +92,18 @@ next_btn.onclick = ()=>{
         startTimerLine(widthValue); //calling startTimerLine function
         timeText.textContent = "Remaining Time:"; //change the timeText to Time Left
         next_btn.classList.remove("show"); //hide the next button
+        question_sound.play();
     }else{
         clearInterval(counter); //clear counter
         clearInterval(counterLine); //clear counterLine
         showResult(); //calling showResult function
     }
 }
+
+
+
+
+
 
 // getting questions and options from array
 function showQuestions(index){
@@ -105,7 +117,7 @@ function showQuestions(index){
     // + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
     que_text.innerHTML = que_tag; //adding new span tag inside que_tag
     option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-    
+
     const option = option_list.querySelectorAll(".option");
 
     // set onclick attribute to all available options
@@ -124,7 +136,9 @@ function optionSelected(answer){
     let userAns = answer.textContent; //getting user selected option
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
-    
+    question_sound.currentTime = 0;
+    question_sound.pause();
+
     if(userAns == correcAns){ //if user selected option is equal to array's correct answer
         userScore += 1; //upgrading score value with 1
         answer.classList.add("correct"); //adding green color to correct selected option
@@ -137,7 +151,7 @@ function optionSelected(answer){
         console.log("Wrong Answer");
 
         for(i=0; i < allOptions; i++){
-            if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
+            if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer
                 option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
                 // option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
                 console.log("Auto selected correct answer.");
@@ -149,6 +163,7 @@ function optionSelected(answer){
     }
     next_btn.classList.add("show"); //show the next button if user selected any option
 }
+
 
 function showResult(){
     info_box.classList.remove("activeInfo"); //hide info box
@@ -179,7 +194,7 @@ function startTimer(time){
         timeCount.textContent = time; //changing the value of timeCount with time value
         time--; //decrement the time value
         if(time < 9){ //if timer is less than 9
-            let addZero = timeCount.textContent; 
+            let addZero = timeCount.textContent;
             timeCount.textContent = "0" + addZero; //add a 0 before time value
         }
         if(time < 0){ //if timer is less than 0
