@@ -11,6 +11,7 @@ const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 const question_sound = document.getElementById("question_sound");
+const winner_sound = document.getElementById("winner_sound");
 
 // if startQuiz button clicked
 start_btn.onclick = ()=>{
@@ -170,6 +171,8 @@ function showResult(){
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
     result_box.classList.add("activeResult"); //show result box
     const scoreText = result_box.querySelector(".score_text");
+    winner_sound.play();
+    winner_sound.volume = 0.5;
     if (userScore > 3){ // if user scored more than 3
         //creating a new span tag and passing the user score number and total question number
         let scoreTag = '<span>Your score: <p>'+ userScore +'/'+ questions.length +'</p> </span>';
@@ -187,6 +190,8 @@ function showResult(){
         scoreText.innerHTML = scoreTag;
     }
 }
+
+
 
 function startTimer(time){
     counter = setInterval(timer, 1000);
