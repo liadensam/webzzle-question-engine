@@ -45,6 +45,7 @@
 }
 
 .start_btn {
+  position: fixed;
   top: 70%;
 }
 
